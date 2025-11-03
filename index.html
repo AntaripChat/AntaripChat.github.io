@@ -459,6 +459,119 @@
         fill: var(--ben-black);
       }
 
+      /* Omnitrix Animation */
+      .omnitrix-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 2rem 0;
+      }
+
+      .omnitrix {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        cursor: pointer;
+        transition: transform 0.5s ease;
+      }
+
+      .omnitrix:hover {
+        transform: scale(1.05);
+      }
+
+      .omnitrix-base {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #333, #000);
+        border-radius: 50%;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+      }
+
+      .omnitrix-dial {
+        width: 80%;
+        height: 80%;
+        background: linear-gradient(45deg, #111, #222);
+        border-radius: 50%;
+        position: absolute;
+        top: 10%;
+        left: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 1s ease;
+      }
+
+      .omnitrix.active .omnitrix-dial {
+        transform: rotate(180deg);
+        animation: glow 2s infinite alternate;
+      }
+
+      @keyframes glow {
+        0% {
+          box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+        100% {
+          box-shadow: 0 0 30px rgba(0, 255, 0, 0.8), 0 0 40px rgba(0, 255, 0, 0.6);
+        }
+      }
+
+      .omnitrix-symbol-center {
+        width: 40%;
+        height: 40%;
+        background: var(--ben-green);
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        transform: rotate(180deg);
+        transition: all 0.5s ease;
+      }
+
+      .omnitrix.active .omnitrix-symbol-center {
+        background: var(--ben-accent);
+        clip-path: polygon(50% 100%, 0 0, 100% 0);
+        transform: rotate(0deg);
+      }
+
+      .omnitrix-buttons {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      .omnitrix-button {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: var(--ben-green);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .omnitrix-button:nth-child(1) {
+        top: 20%;
+        left: 50%;
+      }
+
+      .omnitrix-button:nth-child(2) {
+        top: 50%;
+        left: 80%;
+      }
+
+      .omnitrix-button:nth-child(3) {
+        top: 80%;
+        left: 50%;
+      }
+
+      .omnitrix-button:nth-child(4) {
+        top: 50%;
+        left: 20%;
+      }
+
+      .omnitrix.active .omnitrix-button {
+        background: var(--ben-accent);
+        animation: pulse 1s infinite alternate;
+      }
+
       /* About Section */
       .sub-section {
         padding: 6rem 2rem;
@@ -571,52 +684,6 @@
         color: var(--ben-black);
         transform: translateY(-3px);
         box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3);
-      }
-
-      .headshot-container {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        opacity: 0;
-        transform: translateX(30px);
-        transition: all 0.8s ease;
-      }
-
-      .headshot-container.visible {
-        opacity: 1;
-        transform: translateX(0);
-      }
-
-      .headshot {
-        width: 100%;
-        max-width: 400px;
-        border-radius: 20px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-        transition: var(--transition);
-        position: relative;
-        overflow: hidden;
-        border: 2px solid var(--ben-green);
-      }
-
-      .headshot::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(45deg, rgba(0, 255, 0, 0.2), rgba(255, 153, 0, 0.2));
-        opacity: 0;
-        transition: var(--transition);
-      }
-
-      .headshot:hover::before {
-        opacity: 1;
-      }
-
-      .headshot:hover {
-        transform: scale(1.03);
-        box-shadow: 0 25px 50px rgba(0, 255, 0, 0.3);
       }
 
       /* Projects Section */
@@ -834,10 +901,6 @@
         .sub-section .container {
           flex-direction: column;
         }
-
-        .headshot-container {
-          order: -1;
-        }
       }
 
       @media (max-width: 768px) {
@@ -879,6 +942,11 @@
 
         .project-container {
           grid-template-columns: 1fr;
+        }
+
+        .omnitrix {
+          width: 150px;
+          height: 150px;
         }
       }
     </style>
@@ -930,7 +998,24 @@
       <div class="container">
         <div class="information">
           <h2>About Me</h2>
-          <p>Hello! I'm Antarip Chatterjee, a passionate Back-End Developer with expertise in building robust and scalable server-side applications.</p>
+          <p>Hello! I'm Antarip Chatterjee, a passionate Back-End Developer with expertise in building robust and scalable server-side applications. Just like Ben 10 transforms to face any challenge, I adapt to solve complex technical problems!</p>
+          
+          <div class="omnitrix-container">
+            <div class="omnitrix" id="omnitrix">
+              <div class="omnitrix-base">
+                <div class="omnitrix-dial">
+                  <div class="omnitrix-symbol-center"></div>
+                </div>
+                <div class="omnitrix-buttons">
+                  <div class="omnitrix-button"></div>
+                  <div class="omnitrix-button"></div>
+                  <div class="omnitrix-button"></div>
+                  <div class="omnitrix-button"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
           <h2>Skills</h2>
           <div class="skills">
             <span class="skill-tag">JavaScript</span>
@@ -950,9 +1035,6 @@
             <span class="skill-tag">Docker</span>
             <span class="skill-tag">GraphQL</span>
           </div>
-        </div>
-        <div class="headshot-container">
-          <img class="headshot" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Antarip Chatterjee headshot"/>
         </div>
       </div>
     </section>
@@ -1031,6 +1113,20 @@
         }
       });
 
+      // Omnitrix animation
+      const omnitrix = document.getElementById('omnitrix');
+      omnitrix.addEventListener('click', () => {
+        omnitrix.classList.toggle('active');
+        
+        // Play transformation sound if available
+        try {
+          const audio = new Audio('https://www.soundjay.com/button/beep-07.wav');
+          audio.play();
+        } catch (e) {
+          console.log('Audio not available');
+        }
+      });
+
       // Scroll animations
       const observerOptions = {
         threshold: 0.1,
@@ -1048,13 +1144,11 @@
       // Observe elements for scroll animations
       document.addEventListener('DOMContentLoaded', () => {
         const aboutInfo = document.querySelector('.information');
-        const aboutImage = document.querySelector('.headshot-container');
         const projectsTitle = document.querySelector('.sub-section-alternative h2');
         const projectCards = document.querySelectorAll('.project-card');
         const footer = document.querySelector('footer');
 
         observer.observe(aboutInfo);
-        observer.observe(aboutImage);
         observer.observe(projectsTitle);
         projectCards.forEach(card => observer.observe(card));
         observer.observe(footer);
